@@ -19,7 +19,7 @@ jobs:
           sudo apt-get install -y ninja-build
           
       - name: Build APK
-        run: flet build apk --project "AELIAN CHRONOS"
+        run: flet build apk .  # El punto significa "aquí mismo"
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
