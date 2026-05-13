@@ -1,0 +1,28 @@
+name: Build APK de AELIAN CHRONOS
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install Flet and Dependencies
+        run: |
+          pip install flet[all]
+          sudo apt-get update
+          sudo apt-get install -y ninja-build
+          
+      - name: Build APK
+        run: flet build apk --project "AELIAN CHRONOS"
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: Aelian-Chronos-APK
+          path: build/apk/*.apk
